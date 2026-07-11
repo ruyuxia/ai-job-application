@@ -85,3 +85,4 @@ http://localhost:3000
 - 加文件对象存储
 - 加后台管理页
 - 加任务队列，避免大量岗位验证超时
+deploy refresh
