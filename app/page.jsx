@@ -310,7 +310,7 @@ export default function Page() {
         <header>
           <div>
             <h1>AI 求职投递管家</h1>
-            <p>{capabilities.aiEnabled ? "AI 已接入" : "AI 未接入"} · {capabilities.searchEnabled ? "官网验证已接入" : "官网验证未接入"} · {capabilities.supabaseEnabled ? "数据库已接入" : "数据库未接入"}</p>
+            <p>{capabilities.aiEnabled ? `文本 AI 已接入：${capabilities.aiProvider || "openai"}` : "文本 AI 未接入"} · {capabilities.visionEnabled ? `截图识别已接入：${capabilities.visionProvider || "openai"}` : "截图识别未接入"} · {capabilities.searchEnabled ? "官网验证已接入" : "官网验证未接入"} · {capabilities.supabaseEnabled ? "数据库已接入" : "数据库未接入"}</p>
           </div>
           <div className="header-actions">
             <button onClick={() => refresh()}>刷新数据</button>

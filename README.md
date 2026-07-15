@@ -7,7 +7,8 @@
 - GitHub 账号
 - Vercel 账号
 - Supabase 项目
-- OpenAI API Key
+- DeepSeek API Key
+- 视觉模型 API Key（OpenAI-compatible，例如 SiliconFlow 等）
 - Tavily API Key
 
 ## 1. 创建 Supabase 表
@@ -24,12 +25,27 @@
 在 Vercel 项目 Settings -> Environment Variables 填：
 
 ```text
-OPENAI_API_KEY=你的_OpenAI_API_Key
-OPENAI_MODEL=gpt-4.1-mini
+AI_PROVIDER=deepseek
+DEEPSEEK_API_KEY=你的_DeepSeek_API_Key
+DEEPSEEK_MODEL=deepseek-chat
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+
+VISION_PROVIDER=openai-compatible
+VISION_API_KEY=你的_视觉模型_API_Key
+VISION_BASE_URL=https://api.siliconflow.cn/v1
+VISION_MODEL=Qwen/Qwen2.5-VL-72B-Instruct
+
 TAVILY_API_KEY=你的_Tavily_API_Key
 NEXT_PUBLIC_SUPABASE_URL=你的_Supabase_Project_URL
 NEXT_PUBLIC_SUPABASE_ANON_KEY=你的_Supabase_Anon_Key
 SUPABASE_SERVICE_ROLE_KEY=你的_Supabase_Service_Role_Key
+```
+
+如果未来要切回 OpenAI，可以把 `AI_PROVIDER` 改成 `openai`，并配置：
+
+```text
+OPENAI_API_KEY=你的_OpenAI_API_Key
+OPENAI_MODEL=gpt-4.1-mini
 ```
 
 本地测试时，可以复制 `.env.example` 为 `.env.local`，填入同样内容。
@@ -63,11 +79,12 @@ http://localhost:3000
 - 上传 txt / docx / 文本型 PDF 简历
 - 填写求职意向
 - 粘贴岗位链接并抓取 JD
-- 调 OpenAI 做岗位匹配和简历建议
+- 调 DeepSeek / OpenAI 做岗位匹配、简历定制和投递话术
+- 调视觉模型识别多张岗位截图并批量保存岗位
 - 调 Tavily 搜索官方招聘页做岗位验证
 - 保存投递状态到 Supabase
 - 导出 CSV
-- 粘贴邮件内容识别进展
+- 手动维护投递进度和面试经验
 
 暂时不支持：
 
